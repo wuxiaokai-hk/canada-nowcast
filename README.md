@@ -14,9 +14,9 @@ before later revisions. It scores against both the first release and the latest 
 > **The pipeline and tests are complete. Real Canadian results are not in yet.** This workspace cannot reach
 > Statistics Canada or the real-time database below, so the results shown are on **simulated** vintages with a
 > known structure, publication lags and revisions. Run `python tools/get_lcdma.py` on your own computer, set
-> `source: lcdma` in `config.yaml`, and re-run to get the real numbers. The LCDMA reader handles the documented
-> layout (a date column, one column per series, an optional transformation-code row). Check the first vintage
-> it loads against the source files.
+> `source: lcdma` in `config.yaml`, and re-run to get the real numbers. The reader matches the real LCDMA layout (one folder per vintage holding
+> CAN_MD.csv and CAN_QD.csv, checked against the October 2026 files). A vintage with a different layout is
+> skipped and listed; the May 2026 vintage is one.
 
 ## Models
 
@@ -50,9 +50,9 @@ pip install -r requirements.txt
 python -m nowcast.run                 # simulated vintages by default -> report/report.html
 python -m pytest -q
 
-# real data, on your own computer:
-python tools/get_lcdma.py --last 60   # LCDMA real-time vintages
-# config.yaml: source: lcdma; run once to list GDP columns, then set target_column
+# real data, in a terminal on your own computer (the download site is not reachable from every network):
+python tools/get_lcdma.py --last 60   # about 400 MB of zipped vintages into data/lcdma/, unzipped
+# config.yaml: source: lcdma   (target_column REAL_GDP and 16 monthly indicators are already set)
 python -m nowcast.run
 ```
 

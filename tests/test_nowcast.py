@@ -21,14 +21,22 @@ def test_pseudo_real_time_has_no_look_ahead():
     assert pseudo_real_time(m, q, {"a": 0}, 2, v0, v0)[v0][1].gdp.last_valid_index() == pd.Timestamp("2018-10-01")
 
 
-def test_from_folder_reads_vintages_and_code_row(tmp_path):
-    for name in ("LCDMA_March_2026.csv", "LCDMA_Q_March_2026.csv"):
-        rows = ["Date,x1,x2", "Transform,5,2", "2026-01-01,100,1.0", "2026-02-01,101,1.5"]
-        (tmp_path / name).write_text("\n".join(rows))
+def test_from_folder_reads_lcdma_layout(tmp_path):
+    """The real layout: LCDMA_<Month>_<Year>/CAN_MD.csv and LCDMA_Q_<Month>_<Year>/CAN_QD.csv, with an unnamed
+    row-number column before Date, NA for missing values, and macOS metadata folders to ignore."""
+    m_dir = tmp_path / "LCDMA_March_2026"
+    q_dir = tmp_path / "LCDMA_Q_March_2026"
+    junk = tmp_path / "__MACOSX" / "LCDMA_March_2026"
+    for d in (m_dir, q_dir, junk):
+        d.mkdir(parents=True)
+    (m_dir / "CAN_MD.csv").write_text('"","Date","GDP_new","EMP_CAN"\n"1",2026-01-01,100,20\n"2",2026-02-01,NA,21\n')
+    (q_dir / "CAN_QD.csv").write_text('"","Date","REAL_GDP"\n"1",2025-10-01,2500\n"2",2026-01-01,NA\n')
+    (junk / "CAN_MD.csv").write_text("garbage")
     v = from_folder(str(tmp_path))
     assert list(v) == [pd.Timestamp("2026-03-01")]
     m, q = v[pd.Timestamp("2026-03-01")]
-    assert m.shape == (2, 2) and m.x1.iloc[-1] == 101
+    assert list(m.columns) == ["GDP_new", "EMP_CAN"] and np.isnan(m.GDP_new.iloc[-1]) and m.EMP_CAN.iloc[-1] == 21
+    assert q.REAL_GDP.iloc[0] == 2500
 
 
 def test_transform_codes():

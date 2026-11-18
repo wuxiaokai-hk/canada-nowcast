@@ -23,33 +23,45 @@ MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "
 
 
 def _read_panel(path):
-    """Read a CSV with a date column first. Rows that are not dates (e.g. a transformation-code row, as in
-    FRED-MD-style files) are returned separately."""
+    """Read a CSV whose dates are in a 'Date' column (LCDMA files start with an unnamed row-number column)
+    or in the first column. Rows that are not dates (e.g. a transformation-code row) are returned separately."""
     raw = pd.read_csv(path)
-    first = raw.columns[0]
+    first = "Date" if "Date" in raw.columns else raw.columns[0]
     dates = pd.to_datetime(raw[first], errors="coerce")
     meta = raw[dates.isna()].set_index(first)
     df = raw[dates.notna()].copy()
     df.index = pd.DatetimeIndex(dates[dates.notna()]).to_period("M").to_timestamp()
-    df = df.drop(columns=first).apply(pd.to_numeric, errors="coerce")
+    drop = [first] + [c for c in df.columns if str(c).startswith("Unnamed")]
+    df = df.drop(columns=drop).apply(pd.to_numeric, errors="coerce")
     return df, meta
 
 
-def from_folder(folder, monthly_glob="*LCDMA_[A-Z]*.csv", quarterly_glob="*LCDMA_Q_*.csv"):
-    """Real vintages saved as files named like LCDMA_March_2026.csv / LCDMA_Q_March_2026.csv.
+def _vdate(name):
+    m = re.search(r"_([A-Za-z]+)_(\d{4})", name)
+    return pd.Timestamp(int(m.group(2)), MONTHS[m.group(1).lower()], 1) if m and m.group(1).lower() in MONTHS else None
 
-    The LCDMA file layout is read generically (date column first, one column per series, optional code row);
-    check the first loaded vintage against the source before relying on it.
-    """
-    def vdate(p):
-        m = re.search(r"_([A-Za-z]+)_(\d{4})", os.path.basename(p))
-        return pd.Timestamp(int(m.group(2)), MONTHS[m.group(1).lower()], 1) if m else None
 
-    mon = {vdate(p): p for p in glob.glob(os.path.join(folder, monthly_glob)) if "_Q_" not in p}
-    qua = {vdate(p): p for p in glob.glob(os.path.join(folder, quarterly_glob))}
-    out = {}
+def from_folder(folder):
+    """Real LCDMA vintages, unzipped. Each vintage is a folder LCDMA_<Month>_<Year>/ holding CAN_MD.csv
+    (monthly) and LCDMA_Q_<Month>_<Year>/ holding CAN_QD.csv (quarterly). Vintages whose files are missing or
+    unreadable are skipped and listed."""
+    mon, qua = {}, {}
+    for p in glob.glob(os.path.join(folder, "**", "CAN_MD.csv"), recursive=True):
+        d = os.path.basename(os.path.dirname(p))
+        if "__MACOSX" not in p and "_Q_" not in d and _vdate(d):
+            mon[_vdate(d)] = p
+    for p in glob.glob(os.path.join(folder, "**", "CAN_QD.csv"), recursive=True):
+        d = os.path.basename(os.path.dirname(p))
+        if "__MACOSX" not in p and "_Q_" in d and _vdate(d):
+            qua[_vdate(d)] = p
+    out, skipped = {}, sorted(set(mon) ^ set(qua))
     for v in sorted(set(mon) & set(qua)):
-        out[v] = (_read_panel(mon[v])[0], _read_panel(qua[v])[0])
+        try:
+            out[v] = (_read_panel(mon[v])[0], _read_panel(qua[v])[0])
+        except Exception:                      # noqa: BLE001 - a malformed vintage is skipped, not fatal
+            skipped.append(v)
+    if skipped:
+        print("skipped vintages:", ", ".join(f"{v:%b %Y}" for v in sorted(skipped)))
     return out
 
 

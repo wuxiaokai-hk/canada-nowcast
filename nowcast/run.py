@@ -50,7 +50,7 @@ def lcdma_vintages(cfg):
             qq = quarterly_growth(qq.gdp).to_frame("gdp")
         qq.index = qq.index.to_period("Q").start_time
         out[v] = (mm, qq)
-    return {v: out[v] for v in sorted(out) if v >= pd.Timestamp(cfg["vintage_start"])}
+    return dict(sorted(out.items()))
 
 
 def _img(out, name):
