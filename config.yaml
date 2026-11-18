@@ -1,0 +1,9 @@
+# Canadian GDP nowcast, evaluated in real time.
+source: simulated            # simulated | lcdma (real vintages, after python tools/get_lcdma.py)
+lcdma_folder: data/lcdma
+target_column: null          # LCDMA quarterly column for real GDP; null = list the GDP-like columns and stop
+monthly_columns: null        # list of LCDMA monthly series to use; null = the most complete 20
+max_monthly: 20
+vintage_start: 2012-01-01
+dfm: true                    # the mixed-frequency dynamic factor model (slower)
+report_dir: report

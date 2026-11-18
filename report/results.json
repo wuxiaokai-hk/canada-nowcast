@@ -1,0 +1,330 @@
+{
+ "source": "SIMULATED data (known factor structure, publication lags and revisions)",
+ "vintages": 168,
+ "nowcasts": 1108,
+ "rmse_latest": [
+  {
+   "months_to_release": 1,
+   "model": "AR(1)",
+   "n": 56,
+   "rmse": 0.644,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 1,
+   "model": "Bridge equations",
+   "n": 56,
+   "rmse": 0.4103,
+   "rmse_vs_ar": 0.6371,
+   "dm_p": 0.0001
+  },
+  {
+   "months_to_release": 1,
+   "model": "Dynamic factor model",
+   "n": 56,
+   "rmse": 0.4893,
+   "rmse_vs_ar": 0.7599,
+   "dm_p": 0.0022
+  },
+  {
+   "months_to_release": 1,
+   "model": "PCA factors",
+   "n": 56,
+   "rmse": 0.2729,
+   "rmse_vs_ar": 0.4237,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 2,
+   "model": "AR(1)",
+   "n": 56,
+   "rmse": 0.6371,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 2,
+   "model": "Bridge equations",
+   "n": 56,
+   "rmse": 0.4165,
+   "rmse_vs_ar": 0.6538,
+   "dm_p": 0.0001
+  },
+  {
+   "months_to_release": 2,
+   "model": "Dynamic factor model",
+   "n": 56,
+   "rmse": 0.486,
+   "rmse_vs_ar": 0.7628,
+   "dm_p": 0.0023
+  },
+  {
+   "months_to_release": 2,
+   "model": "PCA factors",
+   "n": 56,
+   "rmse": 0.2689,
+   "rmse_vs_ar": 0.4221,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 3,
+   "model": "AR(1)",
+   "n": 55,
+   "rmse": 0.6434,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 3,
+   "model": "Bridge equations",
+   "n": 55,
+   "rmse": 0.4823,
+   "rmse_vs_ar": 0.7497,
+   "dm_p": 0.0006
+  },
+  {
+   "months_to_release": 3,
+   "model": "Dynamic factor model",
+   "n": 55,
+   "rmse": 0.486,
+   "rmse_vs_ar": 0.7553,
+   "dm_p": 0.0015
+  },
+  {
+   "months_to_release": 3,
+   "model": "PCA factors",
+   "n": 55,
+   "rmse": 0.3882,
+   "rmse_vs_ar": 0.6033,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 4,
+   "model": "AR(1)",
+   "n": 55,
+   "rmse": 0.7341,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 4,
+   "model": "Bridge equations",
+   "n": 55,
+   "rmse": 0.5765,
+   "rmse_vs_ar": 0.7853,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 4,
+   "model": "Dynamic factor model",
+   "n": 55,
+   "rmse": 0.5165,
+   "rmse_vs_ar": 0.7035,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 4,
+   "model": "PCA factors",
+   "n": 55,
+   "rmse": 0.5643,
+   "rmse_vs_ar": 0.7687,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 5,
+   "model": "AR(1)",
+   "n": 55,
+   "rmse": 0.7305,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 5,
+   "model": "Bridge equations",
+   "n": 55,
+   "rmse": 0.708,
+   "rmse_vs_ar": 0.9692,
+   "dm_p": 0.3244
+  },
+  {
+   "months_to_release": 5,
+   "model": "Dynamic factor model",
+   "n": 55,
+   "rmse": 0.6499,
+   "rmse_vs_ar": 0.8897,
+   "dm_p": 0.0223
+  },
+  {
+   "months_to_release": 5,
+   "model": "PCA factors",
+   "n": 55,
+   "rmse": 0.7801,
+   "rmse_vs_ar": 1.0679,
+   "dm_p": 0.0677
+  }
+ ],
+ "rmse_first_release": [
+  {
+   "months_to_release": 1,
+   "model": "AR(1)",
+   "n": 56,
+   "rmse": 0.6876,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 1,
+   "model": "Bridge equations",
+   "n": 56,
+   "rmse": 0.4592,
+   "rmse_vs_ar": 0.6679,
+   "dm_p": 0.0001
+  },
+  {
+   "months_to_release": 1,
+   "model": "Dynamic factor model",
+   "n": 56,
+   "rmse": 0.5208,
+   "rmse_vs_ar": 0.7574,
+   "dm_p": 0.0014
+  },
+  {
+   "months_to_release": 1,
+   "model": "PCA factors",
+   "n": 56,
+   "rmse": 0.3236,
+   "rmse_vs_ar": 0.4706,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 2,
+   "model": "AR(1)",
+   "n": 56,
+   "rmse": 0.6798,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 2,
+   "model": "Bridge equations",
+   "n": 56,
+   "rmse": 0.4666,
+   "rmse_vs_ar": 0.6864,
+   "dm_p": 0.0002
+  },
+  {
+   "months_to_release": 2,
+   "model": "Dynamic factor model",
+   "n": 56,
+   "rmse": 0.5182,
+   "rmse_vs_ar": 0.7622,
+   "dm_p": 0.0018
+  },
+  {
+   "months_to_release": 2,
+   "model": "PCA factors",
+   "n": 56,
+   "rmse": 0.3201,
+   "rmse_vs_ar": 0.4708,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 3,
+   "model": "AR(1)",
+   "n": 55,
+   "rmse": 0.6863,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 3,
+   "model": "Bridge equations",
+   "n": 55,
+   "rmse": 0.5328,
+   "rmse_vs_ar": 0.7762,
+   "dm_p": 0.0009
+  },
+  {
+   "months_to_release": 3,
+   "model": "Dynamic factor model",
+   "n": 55,
+   "rmse": 0.5147,
+   "rmse_vs_ar": 0.75,
+   "dm_p": 0.0009
+  },
+  {
+   "months_to_release": 3,
+   "model": "PCA factors",
+   "n": 55,
+   "rmse": 0.4472,
+   "rmse_vs_ar": 0.6516,
+   "dm_p": 0.0001
+  },
+  {
+   "months_to_release": 4,
+   "model": "AR(1)",
+   "n": 55,
+   "rmse": 0.78,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 4,
+   "model": "Bridge equations",
+   "n": 55,
+   "rmse": 0.6338,
+   "rmse_vs_ar": 0.8126,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 4,
+   "model": "Dynamic factor model",
+   "n": 55,
+   "rmse": 0.5615,
+   "rmse_vs_ar": 0.7198,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 4,
+   "model": "PCA factors",
+   "n": 55,
+   "rmse": 0.6261,
+   "rmse_vs_ar": 0.8027,
+   "dm_p": 0.0
+  },
+  {
+   "months_to_release": 5,
+   "model": "AR(1)",
+   "n": 55,
+   "rmse": 0.7779,
+   "rmse_vs_ar": 1.0,
+   "dm_p": NaN
+  },
+  {
+   "months_to_release": 5,
+   "model": "Bridge equations",
+   "n": 55,
+   "rmse": 0.7598,
+   "rmse_vs_ar": 0.9766,
+   "dm_p": 0.4323
+  },
+  {
+   "months_to_release": 5,
+   "model": "Dynamic factor model",
+   "n": 55,
+   "rmse": 0.6957,
+   "rmse_vs_ar": 0.8943,
+   "dm_p": 0.0225
+  },
+  {
+   "months_to_release": 5,
+   "model": "PCA factors",
+   "n": 55,
+   "rmse": 0.8303,
+   "rmse_vs_ar": 1.0674,
+   "dm_p": 0.0559
+  }
+ ],
+ "best_model": "PCA factors"
+}
