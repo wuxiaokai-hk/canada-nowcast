@@ -80,3 +80,7 @@ tools/get_lcdma.py     downloads the LCDMA vintages (run it on your own computer
 The real data source is the LCDMA real-time database: Fortin-Gagnon, Leroux, Stevanovic and Surprenant (2022),
 "A large Canadian database for macroeconomic analysis", *Canadian Journal of Economics* 55(4). It has hundreds
 of Canadian and provincial monthly series from 1981, with monthly vintages.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Free to use, change and share. Data downloaded from public sources stay under their providers' terms. Independent open-source project, not affiliated with or endorsed by any employer, regulator or data vendor.
